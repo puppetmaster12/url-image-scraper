@@ -41,8 +41,16 @@ def download(url, pathname):
     # retreive file name
     filename = os.path.join(pathname, url.split("/")[-1])
 
-    progress = tqdm(response.iter._content(1024), f"Downloading {filename}", total=file_size, unit="B", unit_scale=True, unit_divisor=1024)
+    progress = tqdm(response.iter_content(1024), f"Downloading {filename}", total=file_size, unit="B", unit_scale=True, unit_divisor=1024)
     with open(filename, "wb") as f:
         for data in progress:
             f.write(data)
             progress.update(len(data))
+
+def main(url, path):
+    # get all images
+    imgs = get_all_images(url)
+    for img in imgs:
+        download(img, path)
+
+main("https://studiomangoart.blogspot.com/", "../mango-art")
