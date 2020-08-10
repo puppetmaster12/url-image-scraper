@@ -37,6 +37,6 @@
  <h4>Usage</h4>
  <p>Simply pass in the url and the directory to which to download the images to the main function</p>
  <pre>
-  main("<url>", "<directory>")
+  main(url, directory)
  </pre>
  
